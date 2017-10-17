@@ -21,4 +21,3 @@ class Event(TimeStampedMixin):
     end = models.DateTimeField(db_index=True)
     logo = models.URLField()
     url = models.URLField()
-
