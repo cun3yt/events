@@ -1,1 +1,1 @@
-web: gunicorn ears.wsgi --log-file -
+web: gunicorn events.wsgi --log-file -
