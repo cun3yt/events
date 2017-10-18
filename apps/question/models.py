@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import JSONField
 
 
 class TimeStampedMixin(models.Model):
@@ -21,3 +20,4 @@ class Event(TimeStampedMixin):
     end = models.DateTimeField(db_index=True)
     logo = models.URLField()
     url = models.URLField()
+    is_published = models.BooleanField(db_index=True, default=True)

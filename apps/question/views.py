@@ -23,15 +23,14 @@ def this_weekend_definition():
 
 
 def fetch_event(host, id=None):
-    start, end = this_weekend_definition()
-    query_set = Event.objects.filter(start__gte=start, end__lte=end)
-    count = query_set.count()
-
     if id is None:
+        start, end = this_weekend_definition()
+        query_set = Event.objects.filter(start__gte=start, end__lte=end, is_published=True)
+        count = query_set.count()
         random_int = randint(0, count-1)
         event = query_set[random_int:random_int+1][0]
     else:
-        event = query_set.filter(id)[0]
+        event = Event.objects.get(id)
 
     url = "http://{}{}?id={}".format(host, reverse('event_details'), event.event_id)
     return JsonResponse({
